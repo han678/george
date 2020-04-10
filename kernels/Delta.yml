@@ -1,0 +1,11 @@
+name: DeltaKernel
+stationary: false
+doc: This kernel is delta kernel
+value: |
+       if (x1<0 || x2<0 || x1!=x2) return 0;
+       return 1;
+grad:
+    x1: |
+        return 0.0;
+    x2: |
+        return 0.0;
