@@ -10,6 +10,7 @@ from setuptools.command.build_ext import build_ext as _build_ext
 
 def compile_kernels(fns):
     import yaml
+    from yaml import Loader
     from jinja2 import Template
 
     template_dir = "templates"
@@ -25,7 +26,7 @@ def compile_kernels(fns):
     specs = []
     for i, fn in enumerate(fns):
         with open(fn, "r") as f:
-            spec = yaml.load(f.read())
+            spec = yaml.load(f.read(), Loader=Loader)
         print("Found kernel '{0}'".format(spec["name"]))
         spec["index"] = i
         spec["reparams"] = spec.get("reparams", {})
